@@ -8,11 +8,17 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.the
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 class LeinaroAndroidLibraryPlugin : Plugin<Project> {
   override fun apply(target: Project) {
     target.configureAndroidPlugins()
     target.configureAndroidDependencies()
+
+    // Pin the JDK used to run kotlinc/kapt/ksp, independent of whatever JDK launched Gradle
+    // itself -- otherwise Kotlin's jvmTarget silently follows the Gradle daemon's JDK, which
+    // can drift out of sync with the Java compileOptions below and fail the build.
+    target.the<KotlinAndroidProjectExtension>().jvmToolchain(17)
 
     target.the<LibraryExtension>().apply {
       compileSdk = AndroidConfig.compileSDK
