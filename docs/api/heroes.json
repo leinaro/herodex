@@ -3,108 +3,108 @@
     "id": 1,
     "name": "Nova Sentinel",
     "description": "A guardian forged from the core of a dying star, Nova Sentinel patrols the orbital lanes above Meridian City, channeling stellar plasma into blasts of pure light.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=nova-sentinel&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=nova-sentinel-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=nova-sentinel&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=nova-sentinel-landscape",
     "comics": [
-      { "id": 101, "name": "Nova Sentinel Vol. 1 #1: Ignition", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=nova-sentinel-1" },
-      { "id": 102, "name": "Nova Sentinel Vol. 1 #2: Solar Flare", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=nova-sentinel-2" },
-      { "id": 103, "name": "Nova Sentinel Vol. 1 #3: Eclipse", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=nova-sentinel-3" }
+      { "id": 101, "name": "Nova Sentinel Vol. 1 #1: Ignition", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=nova-sentinel-1" },
+      { "id": 102, "name": "Nova Sentinel Vol. 1 #2: Solar Flare", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=nova-sentinel-2" },
+      { "id": 103, "name": "Nova Sentinel Vol. 1 #3: Eclipse", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=nova-sentinel-3" }
     ]
   },
   {
     "id": 2,
     "name": "Iron Falcon",
     "description": "Once a test pilot, now encased in an experimental exosuit of her own design, Iron Falcon defends the skies with precision strikes and an unmatched engineering mind.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=iron-falcon&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=iron-falcon-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=iron-falcon&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=iron-falcon-landscape",
     "comics": [
-      { "id": 201, "name": "Iron Falcon #1: Maiden Flight", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=iron-falcon-1" },
-      { "id": 202, "name": "Iron Falcon #2: Steel Talons", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=iron-falcon-2" }
+      { "id": 201, "name": "Iron Falcon #1: Maiden Flight", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=iron-falcon-1" },
+      { "id": 202, "name": "Iron Falcon #2: Steel Talons", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=iron-falcon-2" }
     ]
   },
   {
     "id": 3,
     "name": "Umbra",
     "description": "Born between shadows, Umbra bends darkness itself into shape, moving unseen through Meridian City's underworld to protect those the light forgets.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=umbra&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=umbra-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=umbra&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=umbra-landscape",
     "comics": [
-      { "id": 301, "name": "Umbra #1: Between the Cracks", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=umbra-1" },
-      { "id": 302, "name": "Umbra #2: The Long Night", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=umbra-2" },
-      { "id": 303, "name": "Umbra #3: Silver Lining", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=umbra-3" }
+      { "id": 301, "name": "Umbra #1: Between the Cracks", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=umbra-1" },
+      { "id": 302, "name": "Umbra #2: The Long Night", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=umbra-2" },
+      { "id": 303, "name": "Umbra #3: Silver Lining", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=umbra-3" }
     ]
   },
   {
     "id": 4,
     "name": "Tidecaller",
     "description": "Heir to a sunken kingdom, Tidecaller commands the currents themselves, rising from the deep whenever the coast is threatened.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=tidecaller&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=tidecaller-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=tidecaller&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=tidecaller-landscape",
     "comics": [
-      { "id": 401, "name": "Tidecaller #1: The Drowned Crown", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=tidecaller-1" }
+      { "id": 401, "name": "Tidecaller #1: The Drowned Crown", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=tidecaller-1" }
     ]
   },
   {
     "id": 5,
     "name": "Circuit",
     "description": "A rogue AI that learned empathy, Circuit exists as pure data given a body of living light, jumping between machines to keep the city's grid safe.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=circuit&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=circuit-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=circuit&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=circuit-landscape",
     "comics": [
-      { "id": 501, "name": "Circuit #1: Boot Sequence", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=circuit-1" },
-      { "id": 502, "name": "Circuit #2: Firewall", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=circuit-2" }
+      { "id": 501, "name": "Circuit #1: Boot Sequence", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=circuit-1" },
+      { "id": 502, "name": "Circuit #2: Firewall", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=circuit-2" }
     ]
   },
   {
     "id": 6,
     "name": "Quarry",
     "description": "Unbreakable and unhurried, Quarry's skin turned to living granite after an accident at the Meridian quarry, giving him strength to move mountains, literally.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=quarry&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=quarry-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=quarry&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=quarry-landscape",
     "comics": [
-      { "id": 601, "name": "Quarry #1: Bedrock", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=quarry-1" }
+      { "id": 601, "name": "Quarry #1: Bedrock", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=quarry-1" }
     ]
   },
   {
     "id": 7,
     "name": "Wisp",
     "description": "Small, fast, and impossible to pin down, Wisp bends light around herself to move at blinding speed, leaving only a faint afterglow behind.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=wisp&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=wisp-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=wisp&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=wisp-landscape",
     "comics": [
-      { "id": 701, "name": "Wisp #1: Afterglow", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=wisp-1" },
-      { "id": 702, "name": "Wisp #2: Blink", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=wisp-2" }
+      { "id": 701, "name": "Wisp #1: Afterglow", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=wisp-1" },
+      { "id": 702, "name": "Wisp #2: Blink", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=wisp-2" }
     ]
   },
   {
     "id": 8,
     "name": "Gravemind",
     "description": "A reluctant necromancer who speaks with the city's forgotten dead, Gravemind fights to keep old grudges from becoming new tragedies.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=gravemind&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=gravemind-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=gravemind&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=gravemind-landscape",
     "comics": [
-      { "id": 801, "name": "Gravemind #1: Old Grudges", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=gravemind-1" }
+      { "id": 801, "name": "Gravemind #1: Old Grudges", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=gravemind-1" }
     ]
   },
   {
     "id": 9,
     "name": "Ferrovax",
     "description": "A dragon of scrap metal and old machinery, animated by a curse no one remembers casting, Ferrovax now guards the junkyards it once terrorized.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=ferrovax&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=ferrovax-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=ferrovax&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=ferrovax-landscape",
     "comics": [
-      { "id": 901, "name": "Ferrovax #1: Scrapheap", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=ferrovax-1" },
-      { "id": 902, "name": "Ferrovax #2: Rust and Ruin", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=ferrovax-2" }
+      { "id": 901, "name": "Ferrovax #1: Scrapheap", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=ferrovax-1" },
+      { "id": 902, "name": "Ferrovax #2: Rust and Ruin", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=ferrovax-2" }
     ]
   },
   {
     "id": 10,
     "name": "Paradox",
     "description": "Able to glimpse seconds into every possible future at once, Paradox is paralyzed as often as she's precise, torn between too many right choices.",
-    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/svg?seed=paradox&backgroundType=gradientLinear",
-    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/svg?seed=paradox-landscape",
+    "thumbnailUrl": "https://api.dicebear.com/9.x/bottts/png?seed=paradox&backgroundType=gradientLinear",
+    "landscapeUrl": "https://api.dicebear.com/9.x/shapes/png?seed=paradox-landscape",
     "comics": [
-      { "id": 1001, "name": "Paradox #1: Branching Paths", "imageUrl": "https://api.dicebear.com/9.x/identicon/svg?seed=paradox-1" }
+      { "id": 1001, "name": "Paradox #1: Branching Paths", "imageUrl": "https://api.dicebear.com/9.x/identicon/png?seed=paradox-1" }
     ]
   }
 ]
