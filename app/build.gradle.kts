@@ -49,7 +49,6 @@ tasks.withType<Test> {
   }
 }
 
-extra.set(
-  JacocoCoverage.coverageDataExtra,
-  CoverageTaskParam(buildDirectory = buildDir)
-)
+// No Jacoco coverage gate here: this module is just the composition root (MainActivity,
+// AppNavHost -- both Compose UI) plus the Hilt Application marker class. All the real logic
+// lives in the feature/domain/data modules, which do have coverage gates.

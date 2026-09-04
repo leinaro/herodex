@@ -31,5 +31,15 @@ dependencies {
 
 extra.set(
   JacocoCoverage.coverageDataExtra,
-  CoverageTaskParam(buildDirectory = buildDir)
+  CoverageTaskParam(
+    buildDirectory = buildDir,
+    // Compose UI (components/theme) and Hilt DI wiring: same rationale as every other
+    // module -- there's no meaningful logic to unit test here, only Result/BaseViewModel are.
+    filesToExclude = listOf(
+      "**/components/**",
+      "**/theme/*",
+      "**/di/*",
+      "**/FlowWithLifecycle*",
+    ),
+  )
 )

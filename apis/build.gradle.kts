@@ -35,7 +35,7 @@ dependencies {
   androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
 
-extra.set(
-  JacocoCoverage.coverageDataExtra,
-  CoverageTaskParam(buildDirectory = buildDir)
-)
+// No Jacoco coverage gate here: this module is entirely DTOs (data/), Hilt wiring (di/)
+// and a Retrofit interface (services/) with no method bodies -- there's no measurable
+// logic to unit test, and excluding all three would leave checkCoverage evaluating 0/0
+// (NaN, vacuously "passing"), which is more confusing than just not gating this module.

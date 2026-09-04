@@ -1,7 +1,6 @@
 package com.leinaro.character_search
 
 import androidx.lifecycle.viewModelScope
-import androidx.paging.map
 import com.leinaro.core.BaseViewModel
 import com.leinaro.core.di.DefaultDispatcher
 import com.leinaro.character_search.ui_state.CharactersSearchUiState
@@ -11,7 +10,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,11 +39,7 @@ class CharacterSearchViewModel @Inject constructor(
 
   fun getCharacters(nameStartsWith: String) {
     viewModelScope.launch(dispatchers) {
-      val pager = getCharactersUseCase.execute(nameStartsWith).flow.map { pagingData ->
-        pagingData.map { character ->
-          character
-        }
-      }
+      val pager = getCharactersUseCase.execute(nameStartsWith).flow
       setValue(CharactersSearchUiState.ShowCharactersListUiState(pager))
     }
   }
