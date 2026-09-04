@@ -3,6 +3,7 @@ package plugins
 import AndroidConfig
 import Dependencies
 import com.android.build.gradle.LibraryExtension
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -18,8 +19,12 @@ class LeinaroKotlinLibraryPlugin : Plugin<Project> {
 
       defaultConfig {
         minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targerSdk
+        targetSdk = AndroidConfig.targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+      }
+      compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
       }
     }
   }
@@ -28,9 +33,8 @@ class LeinaroKotlinLibraryPlugin : Plugin<Project> {
 private fun Project.configureAndroidPlugins() {
   plugins.apply("com.android.library")
   plugins.apply("org.jetbrains.kotlin.android")
+  plugins.apply("com.google.devtools.ksp")
   plugins.apply("dagger.hilt.android.plugin")
-  plugins.apply("kotlin-android")
-  plugins.apply("kotlin-kapt")
   plugins.apply("jacoco")
   plugins.apply("plugins.jacoco-report")
 }
@@ -42,10 +46,9 @@ private fun Project.configureAndroidDependencies() = dependencies {
   // Ktx
   add("implementation", Dependencies.androidxActivityKtx)
 
-  // Loggin Interceptors
-  //add("implementation", "com.squareup.okhttp3:logging-interceptor:4.2.1")
-  add("debugImplementation", "com.github.chuckerteam.chucker:library:3.5.2")
-  add("releaseImplementation", "com.github.chuckerteam.chucker:library-no-op:3.5.2")
+  // HTTP inspector, debug builds only
+  add("debugImplementation", "com.github.chuckerteam.chucker:library:4.0.0")
+  add("releaseImplementation", "com.github.chuckerteam.chucker:library-no-op:4.0.0")
 
   addHiltDependencies()
   addTestDependencies()

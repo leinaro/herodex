@@ -9,8 +9,8 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -18,14 +18,14 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 internal class CharacterSearchViewModelTest {
 
-  private val testDispatcher = TestCoroutineDispatcher()
+  private val testDispatcher = UnconfinedTestDispatcher()
 
   @MockK(relaxed = true)
   private lateinit var getCharactersUseCase: GetCharactersUseCase
 
   @ExperimentalCoroutinesApi
   @get:Rule
-  var mainCoroutineRule = MainCoroutineRule()
+  var mainCoroutineRule = MainCoroutineRule(testDispatcher)
 
   private lateinit var subject: CharacterSearchViewModel
 
@@ -34,7 +34,7 @@ internal class CharacterSearchViewModelTest {
     subject = CharacterSearchViewModel(testDispatcher, getCharactersUseCase)
   }
 
-  @Test fun `Should get characters`() = runBlockingTest {
+  @Test fun `Should get characters`() = runTest {
     // given
     val pager = mockk<Pager<Int, CharacterUiModel>>(relaxed = true)
     every { getCharactersUseCase.execute(any()) } returns pager

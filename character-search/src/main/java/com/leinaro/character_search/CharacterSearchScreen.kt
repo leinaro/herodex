@@ -1,11 +1,9 @@
 package com.leinaro.character_search
 
 import android.util.Log
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -16,8 +14,6 @@ import com.leinaro.character_search.ui_components.NoSearchResults
 import com.leinaro.character_search.ui_components.SearchBarUI
 import com.leinaro.character_search.ui_state.CharactersSearchUiState
 
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
 @Composable
 fun CharacterSearchScreen(
   navHostController: NavHostController,

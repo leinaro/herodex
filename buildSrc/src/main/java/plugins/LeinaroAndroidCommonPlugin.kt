@@ -2,7 +2,6 @@ package plugins
 
 import AndroidConfig
 import Dependencies
-import Versions
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -21,14 +20,13 @@ class LeinaroAndroidCommonPlugin : Plugin<Project> {
       buildFeatures.compose = true
       defaultConfig {
         minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targerSdk
+        targetSdk = AndroidConfig.targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
       }
       compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
       }
-      composeOptions.kotlinCompilerExtensionVersion = Versions.kotlinCompilerExtension
     }
   }
 }
@@ -36,10 +34,9 @@ class LeinaroAndroidCommonPlugin : Plugin<Project> {
 private fun Project.configureAndroidPlugins() {
   plugins.apply("com.android.application")
   plugins.apply("org.jetbrains.kotlin.android")
+  plugins.apply("org.jetbrains.kotlin.plugin.compose")
+  plugins.apply("com.google.devtools.ksp")
   plugins.apply("dagger.hilt.android.plugin")
-  plugins.apply("kotlin-android")
-  plugins.apply("kotlin-kapt")
-  plugins.apply("de.mannodermaus.android-junit5")
   plugins.apply("jacoco")
   plugins.apply("plugins.jacoco-report")
 }

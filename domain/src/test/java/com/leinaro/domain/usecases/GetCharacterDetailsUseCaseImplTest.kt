@@ -1,8 +1,8 @@
 package com.leinaro.domain.usecases
 
-import app.cash.turbine.testIn
+import app.cash.turbine.test
 import com.leinaro.data.Repository
-import com.leinaro.data.data.MarvelCharacterData
+import com.leinaro.data.data.HeroData
 import com.leinaro.domain.mapper.toUiModel
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -30,17 +30,17 @@ internal class GetCharacterDetailsUseCaseImplTest {
     @Test
     fun `Should get character details successfully`() = runBlocking {
         // given
-        val marvelCharacterData = mockk<MarvelCharacterData>(relaxed = true)
+        val heroData = mockk<HeroData>(relaxed = true)
         every { repository.getCharacterDetails(1234L) } returns flow {
-            emit(marvelCharacterData)
+            emit(heroData)
         }
 
-        // when
-        val turbine = subject.execute(1234L).testIn(this)
-        val characterUiModel = turbine.awaitItem()
-        turbine.awaitComplete()
-        // then
-        assertEquals(marvelCharacterData.toUiModel(), characterUiModel)
+        // when / then
+        subject.execute(1234L).test {
+            val characterUiModel = awaitItem()
+            assertEquals(heroData.toUiModel(), characterUiModel)
+            awaitComplete()
+        }
         verify(exactly = 1) { repository.getCharacterDetails(1234L) }
     }
 }

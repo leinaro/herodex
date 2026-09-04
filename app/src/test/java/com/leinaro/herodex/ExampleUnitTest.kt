@@ -1,4 +1,4 @@
-package com.leinaro.persistence
+package com.leinaro.herodex
 
 import org.junit.Test
 

@@ -12,8 +12,8 @@ import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -21,7 +21,7 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 internal class CharacterDetailViewModelTest {
 
-  private val testDispatcher = TestCoroutineDispatcher()
+  private val testDispatcher = UnconfinedTestDispatcher()
 
   @MockK(relaxed = true)
   private lateinit var getCharacterDetailsUseCase: GetCharacterDetailsUseCase
@@ -31,19 +31,19 @@ internal class CharacterDetailViewModelTest {
 
   @ExperimentalCoroutinesApi
   @get:Rule
-  var mainCoroutineRule = MainCoroutineRule()
+  var mainCoroutineRule = MainCoroutineRule(testDispatcher)
 
   private lateinit var subject: CharacterDetailViewModel
 
-  private val marvelCharacter = flow {
+  private val heroCharacter = flow {
     emit(
       CharacterUiModel(
-        1,
-        "hello",
-        "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/standard_small.jpg",
-        "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/standard_small.jpg",
-        "",
-        listOf()
+        id = 1,
+        name = "hello",
+        description = "description",
+        thumbnailUrl = "https://api.dicebear.com/9.x/bottts/svg?seed=hello",
+        landscapeUrl = "https://api.dicebear.com/9.x/bottts/svg?seed=hello",
+        comics = listOf()
       )
     )
   }
@@ -52,9 +52,9 @@ internal class CharacterDetailViewModelTest {
     MockKAnnotations.init(this, relaxUnitFun = true)
   }
 
-  @Test fun `Should get character details`() = runBlockingTest {
+  @Test fun `Should get character details`() = runTest {
     // given
-    every { getCharacterDetailsUseCase.execute(any()) } returns marvelCharacter
+    every { getCharacterDetailsUseCase.execute(any()) } returns heroCharacter
     every { savedStateHandle.get<Long>("id") } returns 12345L
 
     // when
@@ -69,10 +69,10 @@ internal class CharacterDetailViewModelTest {
     assert(character?.name == "hello")
   }
 
-  @Test fun `Should show error when characterId is -1L`() = runBlockingTest {
+  @Test fun `Should show error when characterId is -1L`() = runTest {
     // given
     every { savedStateHandle.get<Long>("id") } returns -1L
-    every { getCharacterDetailsUseCase.execute(any()) } returns marvelCharacter
+    every { getCharacterDetailsUseCase.execute(any()) } returns heroCharacter
 
     // when
     subject = CharacterDetailViewModel(savedStateHandle, testDispatcher, getCharacterDetailsUseCase)
@@ -83,10 +83,9 @@ internal class CharacterDetailViewModelTest {
     assert((subject.uiState as Result.Error).exception?.message == "Character id could not be null")
   }
 
-  //@Test(expected = Throwable::class)
-  @Test fun `Should show error when getCharacterDetailsUseCase fails`() = runBlockingTest {
+  @Test fun `Should show error when getCharacterDetailsUseCase fails`() = runTest {
     // given
-    every { getCharacterDetailsUseCase.execute(any()) } returns flow{ throw Throwable("Test")}
+    every { getCharacterDetailsUseCase.execute(any()) } returns flow { throw Throwable("Test") }
     every { savedStateHandle.get<Long>("id") } returns 12345L
 
     // when

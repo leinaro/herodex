@@ -42,8 +42,8 @@ class CharacterSearchViewModel @Inject constructor(
   fun getCharacters(nameStartsWith: String) {
     viewModelScope.launch(dispatchers) {
       val pager = getCharactersUseCase.execute(nameStartsWith).flow.map { pagingData ->
-        pagingData.map { marvelCharacter ->
-          marvelCharacter
+        pagingData.map { character ->
+          character
         }
       }
       setValue(CharactersSearchUiState.ShowCharactersListUiState(pager))

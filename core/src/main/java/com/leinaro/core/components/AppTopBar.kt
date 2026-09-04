@@ -1,43 +1,41 @@
 package com.leinaro.core.components
 
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.tooling.preview.Preview
 import com.leinaro.core.components.topappbar.BackIconButton
 import com.leinaro.core.components.topappbar.InfoIconButton
 import com.leinaro.core.components.topappbar.SearchIconButon
 import com.leinaro.core.components.topappbar.SearchTextField
-import com.leinaro.core.theme.MarvelTheme
+import com.leinaro.core.theme.HeroDexTheme
 
-sealed class MarvelAppBarData(var title: String = "Marvel") {
-  object None : MarvelAppBarData()
-  object Default : MarvelAppBarData()
+sealed class AppTopBarData(var title: String = "HeroDex") {
+  object None : AppTopBarData()
+  object Default : AppTopBarData()
   data class CanGoBack(
     val onBackClick: () -> Unit,
-  ) : MarvelAppBarData()
+  ) : AppTopBarData()
 
   data class SearchBar(
     val onSearchTextChanged: (String) -> Unit = {},
     val onBackClick: () -> Unit = {},
-  ) : MarvelAppBarData("")
+  ) : AppTopBarData("")
 }
 
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MarvelAppBar(
-  data: MarvelAppBarData = MarvelAppBarData.Default,
+fun AppTopBar(
+  data: AppTopBarData = AppTopBarData.Default,
   onSearchClick: () -> Unit = {},
 ) {
   var showInfoDialog by remember { mutableStateOf(false) }
-  if (data != MarvelAppBarData.None) {
+  if (data != AppTopBarData.None) {
     TopAppBar(
       title = { Text(data.title) },
       navigationIcon = { NavigationIconByType(data) },
@@ -52,18 +50,17 @@ fun MarvelAppBar(
 
   if (showInfoDialog) {
     InfoDialog(
-      title = "Marvel",
-      message = "Marvel application by Leinaro",
+      title = "HeroDex",
+      message = "HeroDex is a portfolio app by Leinaro. All characters and comics shown are " +
+        "original, fictional demo data served from a self-hosted mock API.",
       onDismissRequest = { showInfoDialog = !showInfoDialog }
     )
   }
 }
 
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
 @Composable
 fun ActionsByType(
-  data: MarvelAppBarData,
+  data: AppTopBarData,
   onSearchClick: () -> Unit = {},
   onInfoClick: () -> Unit = {},
   searchText: String = "",
@@ -72,16 +69,16 @@ fun ActionsByType(
   onClearClick: () -> Unit = {},
 ) {
   when (data) {
-    is MarvelAppBarData.None -> {}
-    is MarvelAppBarData.SearchBar -> {
+    is AppTopBarData.None -> {}
+    is AppTopBarData.SearchBar -> {
       SearchTextField(
         searchText, placeholderText, onSearchTextChanged, onClearClick
       )
     }
-    is MarvelAppBarData.CanGoBack -> {
+    is AppTopBarData.CanGoBack -> {
       InfoIconButton(onClick = { onInfoClick() })
     }
-    MarvelAppBarData.Default -> {
+    AppTopBarData.Default -> {
       SearchIconButon(onClick = { onSearchClick() })
       InfoIconButton(onClick = { onInfoClick() })
     }
@@ -89,25 +86,23 @@ fun ActionsByType(
 }
 
 @Composable
-fun NavigationIconByType(data: MarvelAppBarData) {
+fun NavigationIconByType(data: AppTopBarData) {
   when (data) {
-    is MarvelAppBarData.SearchBar -> {
+    is AppTopBarData.SearchBar -> {
       BackIconButton(onClick = { data.onBackClick() })
     }
-    is MarvelAppBarData.CanGoBack -> {
+    is AppTopBarData.CanGoBack -> {
       BackIconButton(onClick = { data.onBackClick() })
     }
-    is MarvelAppBarData.Default -> {}
-    is MarvelAppBarData.None -> {}
+    is AppTopBarData.Default -> {}
+    is AppTopBarData.None -> {}
   }
 }
 
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
 @Preview(showBackground = true)
 @Composable
-private fun MarvelAppBarPreview() {
-  MarvelTheme {
-    MarvelAppBar(data = MarvelAppBarData.SearchBar())
+private fun AppTopBarPreview() {
+  HeroDexTheme {
+    AppTopBar(data = AppTopBarData.SearchBar())
   }
 }

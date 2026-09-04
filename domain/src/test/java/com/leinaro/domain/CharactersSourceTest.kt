@@ -2,14 +2,14 @@ package com.leinaro.domain
 
 import androidx.paging.PagingSource
 import com.leinaro.data.Repository
-import com.leinaro.data.data.MarvelCharacterData
+import com.leinaro.data.data.HeroData
 import com.leinaro.domain.mapper.toUiModel
 import com.leinaro.domain.ui_models.CharacterUiModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 
@@ -19,10 +19,10 @@ internal class CharactersSourceTest {
 
   private lateinit var subject: CharactersSource
 
-  private val listCharacters = listOf<MarvelCharacterData>(
-    mockk<MarvelCharacterData>(relaxed = true),
-    mockk<MarvelCharacterData>(relaxed = true),
-    mockk<MarvelCharacterData>(relaxed = true),
+  private val listCharacters = listOf<HeroData>(
+    mockk<HeroData>(relaxed = true),
+    mockk<HeroData>(relaxed = true),
+    mockk<HeroData>(relaxed = true),
   )
 
   @Before fun setUp() {
@@ -30,7 +30,7 @@ internal class CharactersSourceTest {
     subject = CharactersSource(repository)
   }
 
-  @Test fun `Should load characters successfuly`() = runBlockingTest {
+  @Test fun `Should load characters successfuly`() = runTest {
     // given
 
     coEvery {

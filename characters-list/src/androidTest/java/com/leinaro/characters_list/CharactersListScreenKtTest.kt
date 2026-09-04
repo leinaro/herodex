@@ -5,7 +5,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.PagingData
-import com.leinaro.core.theme.MarvelTheme
+import com.leinaro.core.theme.HeroDexTheme
 import com.leinaro.characters_list.ui_state.CharactersListUiState
 import com.leinaro.domain.ui_models.CharacterUiModel
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -40,8 +40,8 @@ class CharactersListScreenKtTest {
               CharacterUiModel(
                 1,
                 "hello",
-                "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/standard_small.jpg",
-                "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/standard_small.jpg",
+                "https://api.dicebear.com/9.x/bottts/svg?seed=hello",
+                "https://api.dicebear.com/9.x/bottts/svg?seed=hello",
               ), CharacterUiModel(
                 1,
                 "hello",
@@ -58,7 +58,7 @@ class CharactersListScreenKtTest {
     composeTestRule.setContent {
       viewModel= hiltViewModel() // Add this line
 
-      MarvelTheme {
+      HeroDexTheme {
         CharactersList(viewModel)
       }
     }

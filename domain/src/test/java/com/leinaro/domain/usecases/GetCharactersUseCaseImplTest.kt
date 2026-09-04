@@ -25,8 +25,6 @@ internal class GetCharactersUseCaseImplTest {
 
   @Test fun `should return element when execute use case`() = runBlocking {
     // given
-    //   val response = mockk<ApiResponse.Success<MarvelCharacter>>(relaxed = true)
-    //   every { repository.getCharacterDetails(any()) } returns response
     val charactersSource = mockk<CharactersSource>(relaxed = true)
     every { charactersSourceFactory.createCharactersSource() } returns charactersSource
 

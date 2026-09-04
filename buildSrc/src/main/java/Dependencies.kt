@@ -5,20 +5,21 @@ object Dependencies {
   val androidxCoreKtx by lazy { "androidx.core:core-ktx:${Versions.androidxCoreKtx}" }
   val androidxAppCompat by lazy { "androidx.appcompat:appcompat:${Versions.androidxAppCompat}" }
 
-  // region Compose
-  val androidxComposeUi by lazy { "androidx.compose.ui:ui:${Versions.compose}" }
-  val androidxComposeUiTooling by lazy { "androidx.compose.ui:ui-tooling:${Versions.compose}" }
-  val androidxComposeToolingPreview by lazy { "androidx.compose.ui:ui-tooling-preview:${Versions.compose}" }
-  val androidxComposeMaterial by lazy { "androidx.compose.material:material:${Versions.compose}" }
+  // region Compose (versions come from the BOM, see addComposeDependencies)
+  val composeBom by lazy { "androidx.compose:compose-bom:${Versions.composeBom}" }
+  const val androidxComposeUi = "androidx.compose.ui:ui"
+  const val androidxComposeUiTooling = "androidx.compose.ui:ui-tooling"
+  const val androidxComposeToolingPreview = "androidx.compose.ui:ui-tooling-preview"
+  const val androidxComposeMaterial3 = "androidx.compose.material3:material3"
 
   val viewModelCompose by lazy { "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.viewModelCompose}" }
+  val runtimeLifecycleCompose by lazy { "androidx.lifecycle:lifecycle-runtime-compose:${Versions.viewModelCompose}" }
 
   val androidxActivityCompose by lazy { "androidx.activity:activity-compose:${Versions.activityCompose}" }
-  val accompanistSwipeRefresh by lazy { "com.google.accompanist:accompanist-swiperefresh:${Versions.accompanistSwipeRefresh}" }
-  // val runtimeLifecycleCompose by lazy { "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha01" }
+  val navigationCompose by lazy { "androidx.navigation:navigation-compose:${Versions.navigationCompose}" }
 
-  val pagingRuntime by lazy { "androidx.paging:paging-runtime:3.1.1" }
-  val pagingCompose by lazy { "androidx.paging:paging-compose:1.0.0-alpha16" }
+  val pagingRuntime by lazy { "androidx.paging:paging-runtime:${Versions.pagingCompose}" }
+  val pagingCompose by lazy { "androidx.paging:paging-compose:${Versions.pagingCompose}" }
   // endregion
 
   // region Ktx
@@ -36,21 +37,17 @@ object Dependencies {
   // endregion
 
   val timber by lazy { "com.jakewharton.timber:timber:${Versions.timber}" }
-  val kotlin by lazy { "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10" }
-  val materialDesign by lazy { "com.google.android.material:material:${Versions.material}" }
-  val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
 
   // Tests
-  val jUnit5 by lazy { "org.junit.jupiter:junit-jupiter-api:${Versions.jUnit5}" }
+  val jUnit4 by lazy { "junit:junit:${Versions.jUnit4}" }
   val mockk by lazy { "io.mockk:mockk:${Versions.mockk}" }
-  val turbine by lazy { "app.cash.turbine:turbine:0.11.0" }
-  val truth by lazy { "com.google.truth:truth:1.1.3" }
-  val kotlinCoroutinesTest by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4" }
+  val turbine by lazy { "app.cash.turbine:turbine:${Versions.turbine}" }
+  val truth by lazy { "com.google.truth:truth:${Versions.truth}" }
+  val kotlinCoroutinesTest by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}" }
 
   // AndroidTests
-  val composeJunit4 by lazy { "androidx.compose.ui:ui-test-junit4:${Versions.compose}" }
-  val hiltAndroidTest by lazy { "com.google.dagger:hilt-android-testing:2.38.1" }
-  val hiltAndroidTestCompiler by lazy { "com.google.dagger:hilt-android-compiler:2.38.1" }
-  val composeUiTest by lazy { "androidx.compose.ui:ui-test-manifest:${Versions.compose}" }
+  const val composeJunit4 = "androidx.compose.ui:ui-test-junit4"
+  val hiltAndroidTest by lazy { "com.google.dagger:hilt-android-testing:${Versions.hilt}" }
+  val hiltAndroidTestCompiler by lazy { "com.google.dagger:hilt-compiler:${Versions.hilt}" }
+  const val composeUiTest = "androidx.compose.ui:ui-test-manifest"
 }
-

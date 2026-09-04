@@ -1,6 +1,6 @@
 package com.leinaro.data.data
 
-data class MarvelCharacterData(
+data class HeroData(
   val id: Long,
   val name: String,
   val description: String,

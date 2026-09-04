@@ -1,17 +1,19 @@
-/*pluginManagement {
+pluginManagement {
   repositories {
     gradlePluginPortal()
     google()
     mavenCentral()
   }
 }
+
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
     google()
     mavenCentral()
   }
-}*/
+}
+
 include(":app")
 include(":core")
 
@@ -27,4 +29,4 @@ include(":apis")
 // Data layer
 include(":data")
 
-rootProject.name = "Marvel"
+rootProject.name = "HeroDex"

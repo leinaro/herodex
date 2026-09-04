@@ -1,7 +1,7 @@
-package com.leinaro.marvel
+package com.leinaro.herodex
 
 import androidx.compose.ui.test.junit4.createComposeRule
-import com.leinaro.core.theme.MarvelTheme
+import com.leinaro.core.theme.HeroDexTheme
 import org.junit.Rule
 import org.junit.Test
 
@@ -13,7 +13,7 @@ class AppNavHostKtTest {
   fun myTest() {
     // Start the app
     composeTestRule.setContent {
-      MarvelTheme {
+      HeroDexTheme {
         // AppNavHost(navController, scaffoldState)
         //   CharactersListScreen(uiState = fakeUiState, /*...*/)
       }

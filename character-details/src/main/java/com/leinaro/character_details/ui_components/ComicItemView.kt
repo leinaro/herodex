@@ -10,9 +10,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -33,7 +34,7 @@ fun ComicItemView(comic: ComicUiModel) {
   val context = LocalContext.current
 
   Card(
-    elevation = 8.dp,
+    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
     modifier = Modifier
       .padding(8.dp)
       .clickable {
@@ -69,7 +70,7 @@ fun ComicItemView(comic: ComicUiModel) {
         textAlign = TextAlign.Center,
         text = comic.name,
         color = White,
-        style = MaterialTheme.typography.body1,
+        style = MaterialTheme.typography.bodyLarge,
         maxLines = 3,
         overflow = TextOverflow.Ellipsis
       )
