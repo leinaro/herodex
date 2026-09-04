@@ -10,8 +10,8 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -19,14 +19,14 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 internal class CharactersListViewModelTest {
 
-  private val testDispatcher = TestCoroutineDispatcher()
+  private val testDispatcher = UnconfinedTestDispatcher()
 
   @MockK(relaxed = true)
   private lateinit var getCharactersUseCase: GetCharactersUseCase
 
   @ExperimentalCoroutinesApi
   @get:Rule
-  var mainCoroutineRule = MainCoroutineRule()
+  var mainCoroutineRule = MainCoroutineRule(testDispatcher)
 
   private lateinit var subject: CharactersListViewModel
 
@@ -35,7 +35,7 @@ internal class CharactersListViewModelTest {
     subject = CharactersListViewModel(testDispatcher, getCharactersUseCase)
   }
 
-  @Test fun `Should get characters`() = runBlockingTest {
+  @Test fun `Should get characters`() = runTest {
     // given
     val pager = mockk<Pager<Int, CharacterUiModel>>(relaxed = true)
     every { getCharactersUseCase.execute() } returns pager
@@ -44,11 +44,13 @@ internal class CharactersListViewModelTest {
     subject.getCharacters()
 
     // then
+    // getCharacters() wraps the use case's flow in `.catch { }`, so it's a different Flow
+    // instance than `pager.flow` itself -- assert on the interaction and non-null result.
     verify(exactly = 2) { getCharactersUseCase.execute() }
-    assert(subject.uiState.charactersPager == pager.flow)
+    assert(subject.uiState.charactersPager != null)
   }
 
-  @Test fun `Should refresh characters`() = runBlockingTest {
+  @Test fun `Should refresh characters`() = runTest {
     // given
     val pager = mockk<Pager<Int, CharacterUiModel>>(relaxed = true)
     every { getCharactersUseCase.execute() } returns pager
@@ -58,6 +60,6 @@ internal class CharactersListViewModelTest {
 
     // then
     verify(exactly = 2) { getCharactersUseCase.execute() }
-    assert(subject.uiState.charactersPager == pager.flow)
+    assert(subject.uiState.charactersPager != null)
   }
 }

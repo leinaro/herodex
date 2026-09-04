@@ -6,13 +6,13 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.items
+import androidx.paging.compose.itemKey
 
 @Composable
 fun <T : Any> BasicPagingList(
@@ -34,7 +34,11 @@ fun <T : Any> BasicPagingList(
         }
       }
     }
-    items(items = lazyPagingItems, key = { item -> getId(item) }) { item ->
+    items(
+      count = lazyPagingItems.itemCount,
+      key = lazyPagingItems.itemKey { item -> getId(item) },
+    ) { index ->
+      val item = lazyPagingItems[index]
       if (item != null) {
         itemContent(item)
       } else {

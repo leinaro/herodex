@@ -1,11 +1,11 @@
 package com.leinaro.domain.mapper
 
 import com.leinaro.data.data.ComicData
-import com.leinaro.data.data.MarvelCharacterData
+import com.leinaro.data.data.HeroData
 import com.leinaro.domain.ui_models.CharacterUiModel
 import com.leinaro.domain.ui_models.ComicUiModel
 
-internal fun MarvelCharacterData.toUiModel() = CharacterUiModel(
+internal fun HeroData.toUiModel() = CharacterUiModel(
     id = id,
     name = name,
     description = description,

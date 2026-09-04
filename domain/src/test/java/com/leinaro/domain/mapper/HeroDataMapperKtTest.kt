@@ -1,37 +1,37 @@
 package com.leinaro.domain.mapper
 
 import com.leinaro.data.data.ComicData
-import com.leinaro.data.data.MarvelCharacterData
+import com.leinaro.data.data.HeroData
 import com.leinaro.domain.ui_models.CharacterUiModel
 import com.leinaro.domain.ui_models.ComicUiModel
 import org.junit.Assert
 import org.junit.Test
 
-internal class MarvelCharacterDataMapperKtTest {
+internal class HeroDataMapperKtTest {
     @Test
-    fun `MarvelCharacterData to CharacterUiModel`() {
+    fun `HeroData to CharacterUiModel`() {
         // given
-        val marvelCharacterData = MarvelCharacterData(
+        val heroData = HeroData(
             id = 1234L,
-            name = "Captain",
+            name = "Nova Sentinel",
             description = "description",
-            thumbnailUrl = "image_url/portrait_xlarge.jpg",
-            landscapeUrl = "image_url/portrait_xlarge.jpg",
+            thumbnailUrl = "thumbnail_url",
+            landscapeUrl = "landscape_url",
             comics = listOf(
                 ComicData(
-                    name = "Captain 1",
-                    imageUrl = "image_url/portrait_xlarge.jpg",
+                    name = "Nova Sentinel Vol.1 #1",
+                    imageUrl = "comic_image_url",
                 )
             ),
         )
 
         // when
-        val subject = marvelCharacterData.toUiModel()
+        val subject = heroData.toUiModel()
 
         // then
         Assert.assertEquals(1234L, subject.id)
-        Assert.assertEquals("Captain", subject.name)
-        Assert.assertEquals("image_url/portrait_xlarge.jpg", subject.thumbnailUrl)
+        Assert.assertEquals("Nova Sentinel", subject.name)
+        Assert.assertEquals("thumbnail_url", subject.thumbnailUrl)
         Assert.assertEquals(1, subject.comics.size)
     }
 

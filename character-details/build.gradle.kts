@@ -1,13 +1,7 @@
 plugins {
   id("leinaro-android-library")
-  kotlin("kapt")
   id("org.jetbrains.kotlin.android")
 }
-
-hilt {
-  enableExperimentalClasspathAggregation = true
-}
-
 
 android {
   namespace = "com.leinaro.character_details"
@@ -24,20 +18,16 @@ android {
     }
   }
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-  }
-  kotlinOptions {
-    jvmTarget = "1.8"
-    freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 }
 
 dependencies {
   implementation(project(":core"))
   implementation(project(":domain"))
-  androidTestImplementation("androidx.test.ext:junit:1.1.3")
-  androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+  androidTestImplementation("androidx.test.ext:junit:1.2.1")
+  androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
 
 extra.set(

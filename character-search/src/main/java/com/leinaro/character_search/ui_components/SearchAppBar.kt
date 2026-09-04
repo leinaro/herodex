@@ -1,7 +1,6 @@
 package com.leinaro.character_search.ui_components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
@@ -12,16 +11,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.LocalContentAlpha
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -30,7 +29,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -40,10 +38,8 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.leinaro.core.theme.MarvelTheme
+import com.leinaro.core.theme.HeroDexTheme
 
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
 @Composable
 fun SearchBarUI(
   searchText: String,
@@ -71,8 +67,7 @@ fun SearchBarUI(
   }
 }
 
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar(
   searchText: String,
@@ -90,7 +85,7 @@ fun SearchBar(
     navigationIcon = {
       IconButton(onClick = { onNavigateBack() }) {
         Icon(
-          imageVector = Icons.Filled.ArrowBack,
+          imageVector = Icons.AutoMirrored.Filled.ArrowBack,
           modifier = Modifier,
           contentDescription = "Volver"
         )
@@ -110,11 +105,12 @@ fun SearchBar(
         placeholder = {
           Text(text = placeholderText)
         },
-        colors = TextFieldDefaults.textFieldColors(
-          focusedIndicatorColor = Color.Transparent,
-          unfocusedIndicatorColor = Color.Transparent,
-          backgroundColor = Color.Transparent,
-          cursorColor = LocalContentColor.current.copy(alpha = LocalContentAlpha.current)
+        colors = OutlinedTextFieldDefaults.colors(
+          focusedBorderColor = Color.Transparent,
+          unfocusedBorderColor = Color.Transparent,
+          focusedContainerColor = Color.Transparent,
+          unfocusedContainerColor = Color.Transparent,
+          cursorColor = MaterialTheme.colorScheme.onSurface,
         ),
         trailingIcon = {
           AnimatedVisibility(
@@ -156,12 +152,10 @@ fun NoSearchResults() {
   }
 }
 
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
 @Preview(showBackground = true)
 @Composable
 private fun SearchBarUIPreview() {
-  MarvelTheme {
+  HeroDexTheme {
     SearchBarUI("")
   }
 }

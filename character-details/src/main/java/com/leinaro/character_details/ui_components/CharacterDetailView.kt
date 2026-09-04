@@ -13,9 +13,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
@@ -67,7 +67,7 @@ import com.leinaro.domain.ui_models.ComicUiModel
         textAlign = TextAlign.Center,
         text = characterUiModel.name,
         color = White,
-        style = MaterialTheme.typography.h5
+        style = MaterialTheme.typography.titleLarge
       )
 
       Text(
@@ -78,7 +78,7 @@ import com.leinaro.domain.ui_models.ComicUiModel
         textAlign = TextAlign.Justify,
         text = characterUiModel.description,
         color = White,
-        style = MaterialTheme.typography.body1
+        style = MaterialTheme.typography.bodyLarge
       )
     }
 
@@ -99,7 +99,7 @@ import com.leinaro.domain.ui_models.ComicUiModel
           modifier = Modifier
             .weight(8f)
             .padding(8.dp),
-          style = MaterialTheme.typography.h6
+          style = MaterialTheme.typography.titleMedium
         )
         Text(
           textAlign = TextAlign.End,
@@ -108,7 +108,7 @@ import com.leinaro.domain.ui_models.ComicUiModel
           modifier = Modifier
             .weight(8f)
             .padding(8.dp),
-          style = MaterialTheme.typography.h6
+          style = MaterialTheme.typography.titleMedium
         )
         Icon(
           imageVector = Icons.Filled.ArrowDropDown,
@@ -136,7 +136,7 @@ import com.leinaro.domain.ui_models.ComicUiModel
       1,
       "Android",
       "Android",
-      "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg",
+      "https://api.dicebear.com/9.x/bottts/svg?seed=android",
       comics = listOf(ComicUiModel(name = "adsf asdf aff f fafed fsd as dfadsf")),
     )
   )

@@ -1,16 +1,14 @@
-package com.leinaro.marvel
+package com.leinaro.herodex
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -24,8 +22,8 @@ import com.leinaro.character_search.CharacterSearchScreen
 import com.leinaro.character_search.CharacterSearchViewModel
 import com.leinaro.characters_list.CharactersListScreen
 import com.leinaro.characters_list.CharactersListViewModel
-import com.leinaro.core.components.MarvelAppBar
-import com.leinaro.core.components.MarvelAppBarData
+import com.leinaro.core.components.AppTopBar
+import com.leinaro.core.components.AppTopBarData
 
 enum class NavPath(
   val route: String,
@@ -35,22 +33,19 @@ enum class NavPath(
   CharacterDetailView(route = "character_detail_view"),
 }
 
-@ExperimentalComposeUiApi
-@ExperimentalAnimationApi
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavHost(
   navHostController: NavHostController,
-  scaffoldState: ScaffoldState,
 ) {
 
-  var marvelAppBarData: MarvelAppBarData by remember { mutableStateOf(MarvelAppBarData.Default) }
+  var appTopBarData: AppTopBarData by remember { mutableStateOf(AppTopBarData.Default) }
 
   Scaffold(
-    scaffoldState = scaffoldState,
-    backgroundColor = MaterialTheme.colors.background,
+    containerColor = MaterialTheme.colorScheme.background,
     topBar = {
-      MarvelAppBar(
-        data = marvelAppBarData,
+      AppTopBar(
+        data = appTopBarData,
         onSearchClick = { navHostController.navigate(route = NavPath.CharacterSearchView.route) },
       )
     },
@@ -63,7 +58,7 @@ fun AppNavHost(
 
         composable(NavPath.CharactersList.route) {
           val viewModel = hiltViewModel<CharactersListViewModel>()
-          marvelAppBarData = MarvelAppBarData.Default
+          appTopBarData = AppTopBarData.Default
           CharactersListScreen(
             viewModel = viewModel,
             navigateTo = { route -> navHostController.navigate(route = route) }
@@ -72,7 +67,7 @@ fun AppNavHost(
 
         composable(NavPath.CharacterSearchView.route) {
           val viewModel = hiltViewModel<CharacterSearchViewModel>()
-          marvelAppBarData = MarvelAppBarData.None
+          appTopBarData = AppTopBarData.None
           CharacterSearchScreen(
             navHostController,
             viewModel,
@@ -86,12 +81,12 @@ fun AppNavHost(
           })
         ) {
           val viewModel = hiltViewModel<CharacterDetailViewModel>()
-          marvelAppBarData = MarvelAppBarData.CanGoBack(onBackClick = {
+          appTopBarData = AppTopBarData.CanGoBack(onBackClick = {
             navHostController.popBackStack()
           })
 
           CharacterDetailsScreen(
-            marvelAppBarData = marvelAppBarData,
+            appTopBarData = appTopBarData,
             viewModel = viewModel,
             navigateBack = { navHostController.popBackStack() }
           )
