@@ -81,17 +81,11 @@ fun SearchBar(
   val focusRequester = remember { FocusRequester() }
 
   TopAppBar(
-    title = { Text("") },
-    navigationIcon = {
-      IconButton(onClick = { onNavigateBack() }) {
-        Icon(
-          imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-          modifier = Modifier,
-          contentDescription = "Volver"
-        )
-      }
-    },
-    actions = {
+    // The text field goes in the `title` slot, not `actions`: TopAppBarLayout measures
+    // `title` with its maxWidth already reduced by navigationIcon/actions, so fillMaxWidth()
+    // here only fills the space between them. Putting it in `actions` (as before) let it
+    // expand over the whole bar, covering the back button and eating its taps.
+    title = {
       OutlinedTextField(
         modifier = Modifier
           .fillMaxWidth()
@@ -112,21 +106,6 @@ fun SearchBar(
           unfocusedContainerColor = Color.Transparent,
           cursorColor = MaterialTheme.colorScheme.onSurface,
         ),
-        trailingIcon = {
-          AnimatedVisibility(
-            visible = showClearButton,
-            enter = fadeIn(),
-            exit = fadeOut()
-          ) {
-            IconButton(onClick = { onClearClick() }) {
-              Icon(
-                imageVector = Icons.Filled.Close,
-                contentDescription = "Cerrar"
-              )
-            }
-
-          }
-        },
         maxLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
@@ -134,6 +113,29 @@ fun SearchBar(
           keyboardController?.hide()
         }),
       )
+    },
+    navigationIcon = {
+      IconButton(onClick = { onNavigateBack() }) {
+        Icon(
+          imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+          modifier = Modifier,
+          contentDescription = "Volver"
+        )
+      }
+    },
+    actions = {
+      AnimatedVisibility(
+        visible = showClearButton,
+        enter = fadeIn(),
+        exit = fadeOut()
+      ) {
+        IconButton(onClick = { onClearClick() }) {
+          Icon(
+            imageVector = Icons.Filled.Close,
+            contentDescription = "Cerrar"
+          )
+        }
+      }
     })
 
 
