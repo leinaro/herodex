@@ -6,7 +6,8 @@ object JacocoCoverage {
     "**/jacoco/*.exec",
   )
   val classDirectories = arrayOf(
-    "**/jacoco/*.exec"
+    "**/classes/**/main/**",
+    "**/tmp/kotlin-classes/debug/**",
   )
   val sourceDirectories = arrayOf("src/main/java")
   const val reportPath = "jacoco/reports/jacocoAndroidTestReport/jacocoAndroidTestReport.xml"

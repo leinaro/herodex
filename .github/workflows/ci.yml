@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   build-and-test:
@@ -26,8 +27,63 @@ jobs:
       - name: Lint
         run: ./gradlew lintDebug
 
+      # Each Gradle goal below is its own invocation on purpose: combining them (e.g.
+      # `./gradlew testDebugUnitTest checkCoverage assembleDebug` in one command) makes Gradle
+      # interleave their task graphs and trips its own task-validation on this project's custom
+      # Jacoco tasks (they scan a module's whole build/ dir, which then looks like an undeclared
+      # dependency on whatever else -- lint, assemble -- happens to write there in the same run).
+      # Separate invocations keep each task graph self-contained and this doesn't happen.
       - name: Unit tests
+        id: unit_tests
+        continue-on-error: true
         run: ./gradlew testDebugUnitTest
+
+      - name: Coverage gate
+        id: coverage
+        continue-on-error: true
+        run: ./gradlew checkCoverage --continue
+
+      - name: Aggregate coverage report
+        if: always()
+        run: ./gradlew aggregateCoverage
+
+      - name: Summarize test + coverage results
+        if: always()
+        run: python3 .github/scripts/summarize_reports.py > summary.md
+
+      - name: Comment results on the PR
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('summary.md', 'utf8');
+            const marker = '<!-- ci-summary -->';
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find((c) => c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      - name: Fail the job if tests or coverage failed
+        if: steps.unit_tests.outcome == 'failure' || steps.coverage.outcome == 'failure'
+        run: exit 1
 
       - name: Assemble debug APK
         run: ./gradlew assembleDebug
@@ -39,7 +95,15 @@ jobs:
           name: test-reports
           path: "**/build/reports/tests/"
 
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: build/reports/coverage/
+
       - name: Upload debug APK
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: app-debug

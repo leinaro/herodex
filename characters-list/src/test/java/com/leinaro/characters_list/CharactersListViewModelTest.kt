@@ -1,15 +1,17 @@
 package com.leinaro.characters_list
 
+import android.util.Log
 import androidx.paging.Pager
-import com.leinaro.characters_list.ui_state.CharactersListUiState
 import com.leinaro.domain.ui_models.CharacterUiModel
 import com.leinaro.domain.usecases.GetCharactersUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
+import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -44,8 +46,6 @@ internal class CharactersListViewModelTest {
     subject.getCharacters()
 
     // then
-    // getCharacters() wraps the use case's flow in `.catch { }`, so it's a different Flow
-    // instance than `pager.flow` itself -- assert on the interaction and non-null result.
     verify(exactly = 2) { getCharactersUseCase.execute() }
     assert(subject.uiState.charactersPager != null)
   }
@@ -61,5 +61,23 @@ internal class CharactersListViewModelTest {
     // then
     verify(exactly = 2) { getCharactersUseCase.execute() }
     assert(subject.uiState.charactersPager != null)
+  }
+
+  @Test fun `Should log and swallow errors from the characters flow`() = runTest {
+    // given
+    val pager = mockk<Pager<Int, CharacterUiModel>>(relaxed = true)
+    every { pager.flow } returns flow { throw RuntimeException("boom") }
+    every { getCharactersUseCase.execute() } returns pager
+    mockkStatic(Log::class)
+    every { Log.e(any(), any()) } returns 0
+
+    // when
+    subject.getCharacters()
+    // the ViewModel only builds the flow, it doesn't collect it -- collect it ourselves,
+    // same as the UI would via collectAsLazyPagingItems(), to actually trigger .catch { }
+    subject.uiState.charactersPager?.collect {}
+
+    // then: collecting doesn't crash, the failure is logged instead
+    verify(atLeast = 1) { Log.e(any(), any()) }
   }
 }
